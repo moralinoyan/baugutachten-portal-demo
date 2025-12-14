@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 import { Progress } from "@/components/ui/progress"
 import { useState } from "react"
+import Link from "next/link"
 import {
   CalendarDays,
   FileText,
@@ -199,9 +200,16 @@ export default function HomePage() {
                           </div>
                         </div>
 
-                        <div className="flex shrink-0 items-center gap-2 md:justify-end">
-                          <Button variant="outline" className="gap-2 cursor-pointer hover:bg-muted">
-                            Projekt ansehen <ArrowRight className="h-4 w-4" />
+                        <div className="flex shrink-0 items-center md:justify-end">
+                          <Button
+                            asChild
+                            variant="outline"
+                            className="gap-2 whitespace-nowrap"
+                          >
+                            <Link href={`/projects/${p.id}`} className="inline-flex items-center gap-2">
+                              Projekt ansehen
+                              <ArrowRight className="h-4 w-4" />
+                            </Link>
                           </Button>
                         </div>
                       </div>
