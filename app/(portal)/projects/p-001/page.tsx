@@ -41,6 +41,8 @@ type ProjectStatus =
 
 type SeverityLevel = "critical" | "warning" | "ok"
 
+type Severity = "Niedrig" | "Mittel" | "Hoch"
+
 function severityStyles(severity: SeverityLevel) {
   switch (severity) {
     case "critical":
