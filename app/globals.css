@@ -1,26 +1,197 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 
+@custom-variant dark (&:is(.dark *));
+
+/* =========================================================
+   ROOT – LIGHT MODE
+========================================================= */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Base */
+  --background: oklch(0.99 0.002 180);
+  --foreground: oklch(0.2 0.01 240);
+
+  --card: oklch(1 0 0);
+  --card-foreground: var(--foreground);
+
+  --popover: oklch(1 0 0);
+  --popover-foreground: var(--foreground);
+
+  /* PRIMARY (unchanged blue) */
+  --primary: oklch(0.3926 0.097 245.86);
+  --primary-foreground: oklch(0.99 0 0);
+
+  /* SECONDARY (neutral, not blue) */
+  --secondary: oklch(0.965 0.004 240);
+  --secondary-foreground: oklch(0.28 0.01 240);
+
+  /* MUTED / NEUTRALS */
+  --muted: oklch(0.96 0.005 240);
+  --muted-foreground: oklch(32.504% 0.00004 271.152);
+
+  /* ACCENT – same blue, used sparingly */
+  --accent: oklch(0.86 0.0001 271.152);
+  --accent-foreground: oklch(0 0 0);
+
+  /* HOVER / ACTIVE (new, neutral) */
+  --hover: oklch(0.945 0.004 240);
+  --hover-strong: oklch(0.92 0.006 240);
+
+  /* DESTRUCTIVE */
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.99 0 0);
+
+  /* BORDERS / INPUT */
+  --border: oklch(0.93 0.005 240);
+  --input: oklch(0.93 0.005 240);
+  --ring: var(--primary);
+
+  /* CHARTS */
+  --chart-1: var(--primary);
+  --chart-2: oklch(0.55 0.12 165);
+  --chart-3: oklch(0.65 0.08 210);
+  --chart-4: oklch(0.7 0.1 140);
+  --chart-5: oklch(0.5 0.06 220);
+
+  /* RADIUS */
+  --radius: 0.625rem;
+
+  /* SIDEBAR */
+  --sidebar: oklch(1 0 0);
+  --sidebar-foreground: oklch(0.3 0.01 240);
+  --sidebar-border: var(--border);
+
+  --sidebar-hover: var(--hover);
+  --sidebar-active: var(--hover-strong);
+
+  --sidebar-primary: var(--primary);
+  --sidebar-primary-foreground: var(--primary-foreground);
 }
 
+/* =========================================================
+   DARK MODE
+========================================================= */
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+
+  --card: oklch(0.18 0 0);
+  --card-foreground: var(--foreground);
+
+  --popover: oklch(0.18 0 0);
+  --popover-foreground: var(--foreground);
+
+  /* Primary unchanged */
+  --primary: oklch(0.488 0.243 264.376);
+  --primary-foreground: oklch(0.985 0 0);
+
+  /* Neutral interactions */
+  --secondary: oklch(0.26 0 0);
+  --secondary-foreground: oklch(0.9 0 0);
+
+  --muted: oklch(0.25 0 0);
+  --muted-foreground: oklch(0.62 0.25768 29.223);
+
+  --hover: oklch(0.28 0 0);
+  --hover-strong: oklch(0.32 0 0);
+
+  --accent: oklch(0.945 0.004 240);          /* helles Grau */
+  --accent-foreground: oklch(0.28 0.01 240);
+
+
+  --border: oklch(0.269 0 0);
+  --input: oklch(0.269 0 0);
+  --ring: var(--primary);
+
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.95 0 0);
+  --sidebar-border: oklch(0.269 0 0);
+  --sidebar-hover: oklch(0.28 0 0);
+  --sidebar-active: oklch(0.32 0 0);
+}
+
+/* =========================================================
+   THEME TOKENS
+========================================================= */
 @theme inline {
+  --font-sans: "Geist", "Geist Fallback";
+  --font-mono: "Geist Mono", "Geist Mono Fallback";
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-hover: var(--sidebar-hover);
+  --color-sidebar-active: var(--sidebar-active);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* =========================================================
+   BASE LAYER
+========================================================= */
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* =========================================
+   Global interactive cursor behavior
+   ========================================= */
+
+button,
+a,
+[role="button"],
+input[type="button"],
+input[type="submit"],
+summary {
+  cursor: pointer;
+}
+
+/* Radix / shadcn interactive elements */
+[data-state],
+[data-radix-collection-item],
+[data-radix-select-trigger],
+[data-radix-tabs-trigger],
+[data-radix-dialog-trigger] {
+  cursor: pointer;
+}
+
+/* Disabled states should NOT be pointer */
+button:disabled,
+[aria-disabled="true"],
+[data-disabled] {
+  cursor: not-allowed;
 }
